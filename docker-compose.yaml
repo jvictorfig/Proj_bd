@@ -10,13 +10,13 @@ services:
     networks:
       - app-network
 
-  mysql-cvcrm:    
+  mysql-cvcrm:
     image: mysql:5.7.22
     ports:
       - "3306:3306"
     volumes:
       - ./dbdata:/var/lib/mysql
-    environment: 
+    environment:
       MYSQL_DATABASE: root
       MYSQL_ROOT_PASSWORD: root
     networks:
