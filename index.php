@@ -1,4 +1,3 @@
 <?php
-
-echo 'JV Nunca mexa'; 
+phpinfo(); 
 ?>
