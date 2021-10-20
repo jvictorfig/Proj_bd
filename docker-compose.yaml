@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  cvcrm:
+    image: wyveo/nginx-php-fpm:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/usr/share/nginx/html
+    networks:
+      - app-network
+
+  mysql-cvcrm:    
+    image: mysql:5.7.22
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./dbdata:/var/lib/mysql
+    environment: 
+      MYSQL_DATABASE: root
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
