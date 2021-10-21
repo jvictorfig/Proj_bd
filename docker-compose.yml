@@ -1,0 +1,79 @@
+#Iniciar os Containers do docker(Pode demorar um pouco na primeira vez):
+#docker-compose up -d
+
+#Pausar o Docker:
+#docker-compose down
+
+#Pausar o Docker para atualização de versão do banco de projeto_db:
+#docker-compose down -v
+
+#Reconstruir Docker
+#docker-compose up -d --build --force-recreate --no-deps
+
+version: '3.3'
+networks:
+  banco:
+  web:
+volumes:
+  projeto_db:
+services:
+  www:
+    #Caminho do Dockerfile para cnstrução do container do PHP e Apache
+    build: ./docker/images/www/
+    mem_limit: 512M
+    mem_reservation: 128M
+    cpus: 0.2
+    restart: always
+    ports: 
+      - "8888:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+    networks:
+      - web
+      - banco
+  db:
+    #Caminho do Dockerfile para cnstrução do container do MySQL
+    build: ./docker/images/mysql/
+    mem_limit: 512M
+    mem_reservation: 128M
+    cpus: 0.2
+    #restart: always
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci --sql_mode="" 
+    ports: 
+      - "3388:3388"
+    expose: 
+      - "3388"
+    environment:
+      MYSQL_DATABASE: projeto
+      MYSQL_USER: projeto
+      MYSQL_PASSWORD: key!databaseadmin
+      MYSQL_ROOT_PASSWORD: key!databaseadmin
+      MYSQL_TCP_PORT: 3388
+      TZ: America/Maceio
+    volumes:
+      - ./docker/dump/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - projeto_db:/var/lib/mysql
+    networks:
+      - banco
+  phpmyadmin:
+    #Caminho do Dockerfile para cnstrução do container do Phpmyadmin
+    build: ./docker/images/phpmyadmin/
+    mem_limit: 512M
+    mem_reservation: 128M
+    cpus: 0.2
+    restart: always
+    ports: 
+      - "8889:80"
+    environment:
+      MYSQL_USER: projeto
+      MYSQL_PASSWORD: key!databaseadmin
+      MYSQL_ROOT_PASSWORD: key!databaseadmin
+      PMA_HOST: db
+      PMA_PORT: 3388
+    depends_on:
+      - db
+    networks:
+      - banco
+      - web
