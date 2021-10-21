@@ -123,3 +123,15 @@ AdminLTE.io reserves the right to change the license of future releases.
 - [Pickaface](https://pickaface.net/)
 - [Unsplash](https://unsplash.com/)
 - [Uifaces](http://uifaces.com/)
+
+## Notas João Victor - Entrega da primeira etapa
+
+- Tecnologias usadas:
+    - PHP 8.0 e html no desenvolvimento do sistema;
+    - PHPMyAdmin para visualização e manipulação de dados;
+    - Template AdminLTE 3;
+    - Docker Desktop para facilitar o ambiente de desenvolvimento.
+
+- Motivo: Já possuía um poudo de conhecimento das tecnologias acima.
+
+- Link de acesso: jvictor.fazevedo.tec.br

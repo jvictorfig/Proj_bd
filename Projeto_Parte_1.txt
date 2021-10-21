@@ -1,0 +1,9 @@
+- Tecnologias usadas:
+    - PHP 8.0 e html no desenvolvimento do sistema;
+    - PHPMyAdmin para visualização e manipulação de dados;
+    - Template AdminLTE 3;
+    - Docker Desktop para facilitar o ambiente de desenvolvimento.
+
+- Motivo: Já possuía um poudo de conhecimento das tecnologias acima.
+
+- Link de acesso: jvictor.fazevedo.tec.br
