@@ -8,7 +8,7 @@ include('includes/Header.php');
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Meu sistema</h1>
+            <h1 class="m-0">Fluxo Financeiro</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
