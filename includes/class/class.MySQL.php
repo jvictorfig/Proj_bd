@@ -1,6 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
 class MySQL {
         var $host;
         var $user;
@@ -15,19 +13,19 @@ class MySQL {
         }
 
         function connect(){
-                try {      
-                        $servername = "127.0.0.1"; 
-                        $username = "root"; 
-                        $password = "key!databaseadmin";
-                        $banco = "projeto";
-                        $conn = new mysql($servername, $username, $password, $banco);
-                        if ($conn->connect_error) {   
-                                die("Connection failed: " . $conn->connect_error); } 
-                                echo "Connected successfully";
-                } 
-                catch(Exception $e) {     
-                        echo $e->getMessage(); }
-                       
+                        $this->host = "localhost";
+                        $this->user = "projeto";
+                        $this->pass = "key!databaseadmin";
+                        $this->db   = "projeto";
+                
+                $this->link = mysql_connect($this->host,$this->user,$this->pass,$this->db);
+		mysql_set_charset($this->link,'utf8');
+                
+                if(!$this->link){
+                        echo "<div class='alertMessage error SE'>ERRO NA CONEXÃO.<br>"
+                                ."<b>MySQL retornou: </b> ".mysql_error($this->link)."<br></div>";
+                        die();
+                }
         }
 
         function sql($query){
@@ -36,7 +34,7 @@ class MySQL {
                 if($this->result=mysql_query($this->link, $this->query)){
                         return $this->result;
                 } else {
-                        die("<div class='alertMessage error SE'><h2>OCORREU UM ERRO AO EXECUTAR A QUERY SQL ABAIXO:</h2><br>".$query."<<br><br><b>MySQL Retornou: ".mysqli_error($this->link)."<b></div>");
+                        die("<div class='alertMessage error SE'><h2>OCORREU UM ERRO AO EXECUTAR A QUERY SQL ABAIXO:</h2><br>".$query."<<br><br><b>MySQL Retornou: ".mysql_error($this->link)."<b></div>");
                 }
         }
 

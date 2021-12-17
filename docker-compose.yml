@@ -53,7 +53,7 @@ services:
       MYSQL_TCP_PORT: 3388
       TZ: America/Maceio
     volumes:
-      - ./docker/dump/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./docker/dump/projeto.sql:/docker-entrypoint-initdb.d/projeto.sql
       - projeto_db:/var/lib/mysql
     networks:
       - banco

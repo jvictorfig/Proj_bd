@@ -56,3 +56,17 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+CREATE TABLE produto ( 
+  `produto_id` INT(5) NOT NULL AUTO_INCREMENT ,
+  `produto_nome` VARCHAR(20) NOT NULL , 
+  `produto_categoria_id` INT(5) NOT NULL , 
+  `produto_valor` DOUBLE(10,2) NOT NULL , 
+  PRIMARY KEY (`produto_id`)
+  ) ENGINE = InnoDB;
+
+  CREATE TABLE categoria ( 
+    `categoria_id` INT(5) NOT NULL AUTO_INCREMENT , 
+    `categoria_nome` INT(20) NOT NULL , 
+    PRIMARY KEY (`categoria_id`)
+    ) ENGINE = InnoDB;

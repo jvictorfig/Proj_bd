@@ -10,12 +10,12 @@ require_once('includes/header.php');
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Produtos</h1>
+            <h1 class="m-0">Categorias</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-              <li class="breadcrumb-item active">Produtos</li>
+              <li class="breadcrumb-item active">Categorias</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -32,7 +32,7 @@ require_once('includes/header.php');
         <!-- /.row -->
         <!-- Main row -->
         <div class="row">
-          <div class="col-md-12">
+        <div class="col-md-12">
             <button style="width:100%" class="btn btn-info" name="novoProduto"> Novo Produto </button>
             <table class="table table-bordered table-striped">
               <thead>
@@ -46,8 +46,8 @@ require_once('includes/header.php');
               <tbody>
                 <tr>
                   <?php
-                    $queryProdutos = $mySQL->sql("SELECT * FROM `produto` ORDER BY produto_nome ASC");
-                    while($dataProdutos = mysql_fetch_array($queryProdutos)){
+                    //$queryProdutos = $mySQL->sql("SELECT * FROM `produto` ORDER BY produto_nome ASC");
+                    //while($dataProdutos = mysql_fetch_array($queryProdutos)){
                   ?>
                   <td><?=$dataProdutos['produto_nome']?></td>
                   <td><?=$dataProdutos['produto_categoria_id']?></td>
@@ -57,7 +57,7 @@ require_once('includes/header.php');
                     <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir"><i class="fa fa-trash"></i></button>
                   </td>
                   <?php
-                    }
+                    //}
                   ?>
                 </tr>
               </tbody>
@@ -78,6 +78,6 @@ require_once('includes/header.php');
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <?php
-    include('includes/footer.php');
-  ?>
+<?php
+  include('includes/footer.php');
+?>

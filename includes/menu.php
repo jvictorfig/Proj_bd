@@ -14,15 +14,15 @@
               <li class="nav-item">
                 <a href="./index.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Números e Estatísticas</p>
+                  <p>Produtos</p>
                 </a>
               </li>
             </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./creditCards.php" class="nav-link active">
+                <a href="./categorias.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Meus Cartões</p>
+                  <p>Categorias</p>
                 </a>
               </li>
             </ul>
