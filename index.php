@@ -44,22 +44,22 @@ require_once('includes/header.php');
                 </tr>
               </thead>
               <tbody>
-                <tr>
                   <?php
                     $queryProdutos = $mySQL->sql("SELECT * FROM `produto` ORDER BY produto_nome ASC");
-                    while($dataProdutos = mysql_fetch_array($queryProdutos)){
+                    while($dataProdutos = mysqli_fetch_array($queryProdutos)){
                   ?>
+                <tr>
                   <td><?=$dataProdutos['produto_nome']?></td>
                   <td><?=$dataProdutos['produto_categoria_id']?></td>
-                  <td><?=$dataProdutos['produto_valor']?></td>
+                  <td>R$<?=$dataProdutos['produto_valor']?></td>
                   <td align="center" style="width:15%">
                     <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></button>
                     <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir"><i class="fa fa-trash"></i></button>
                   </td>
+                </tr>
                   <?php
                     }
                   ?>
-                </tr>
               </tbody>
               <tfoot>
                 <tr>
