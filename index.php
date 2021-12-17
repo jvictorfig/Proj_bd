@@ -50,7 +50,7 @@ require_once('includes/header.php');
                   ?>
                 <tr>
                   <td><?=$dataProdutos['produto_nome']?></td>
-                  <td><?=$dataProdutos['produto_categoria_id']?></td>
+                  <td><?=nomeCategoria($dataProdutos['produto_categoria_id'])?></td>
                   <td>R$<?=$dataProdutos['produto_valor']?></td>
                   <td align="center" style="width:15%">
                     <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></button>

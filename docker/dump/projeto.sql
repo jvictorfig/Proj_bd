@@ -67,6 +67,6 @@ CREATE TABLE produto (
 
   CREATE TABLE categoria ( 
     `categoria_id` INT(5) NOT NULL AUTO_INCREMENT , 
-    `categoria_nome` INT(20) NOT NULL , 
+    `categoria_nome` VARCHAR(20) NOT NULL , 
     PRIMARY KEY (`categoria_id`)
     ) ENGINE = InnoDB;
