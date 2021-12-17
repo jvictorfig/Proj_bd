@@ -32,40 +32,77 @@ require_once('includes/header.php');
         <!-- /.row -->
         <!-- Main row -->
         <div class="row">
-        <div class="col-md-12">
-            <button style="width:100%" class="btn btn-info" name="novoProduto"> Novo Produto </button>
+          <div class="col-md-12">
+            <button type="button" style="width:100%" class="btn btn-info" data-toggle="modal" data-target="#modalNovaCategoria">
+              Nova categoria
+            </button>
             <table class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th>Nome</th>
                   <th>Categoria</th>
-                  <th>Valor</th>
                   <th>Ações</th>
                 </tr>
               </thead>
               <tbody>
+                  <?php
+                    $queryCategorias = $mySQL->sql("SELECT * FROM `categoria` ORDER BY categoria_nome ASC");
+                    while($dataCategorias = mysqli_fetch_array($queryCategorias)){
+                  ?>
                 <tr>
-                  <?php
-                    //$queryProdutos = $mySQL->sql("SELECT * FROM `produto` ORDER BY produto_nome ASC");
-                    //while($dataProdutos = mysql_fetch_array($queryProdutos)){
-                  ?>
-                  <td><?=$dataProdutos['produto_nome']?></td>
-                  <td><?=$dataProdutos['produto_categoria_id']?></td>
-                  <td><?=$dataProdutos['produto_valor']?></td>
+                  <td><?=$dataCategorias['categoria_nome']?></td>
                   <td align="center" style="width:15%">
-                    <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></button>
-                    <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir"><i class="fa fa-trash"></i></button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditarCategoria<?=$dataCategorias['categoria_id']?>">
+                      <i class="fa fa-edit"></i>
+                    </button>
+                    <a href="categorias.php?action=deletarCategoria&deletarCategoria=<?=$dataCategorias['categoria_id']?>" onclick="return confirm('Tem certeza que deseja deletar a categoria <?=$dataCategorias['categoria_nome']?>?\nOs produtos associados a essa categoria também serão excluídos.') ">
+                      <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </a>
                   </td>
-                  <?php
-                    //}
-                  ?>
                 </tr>
+
+                      <!-------------------------------------------------- MODAL DE EDITAR CATEGORIA -------------------------------------------------->
+
+                <div class="modal fade" id="modalEditarCategoria<?=$dataCategorias['categoria_id']?>" style="display: none;" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content bg-primary">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Editar categoria | Id: <?=$dataCategorias['categoria_id']?></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                      </div>
+                      <form  id ="editarCategoria" method="POST" action="">
+                        <div class="modal-body">
+                          <label for="categoria_nome">Nome:</label>
+                          <div class="col-md-12">
+                            <input style="width:100%" type="text" name="categoria_nome" value="<?=$dataCategorias['categoria_nome']?>" id="categoria_nome" maxlength="20">
+                          </div>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                          <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cancelar</button>
+                          <button type="submit" name="editarCategoria" class="btn btn-outline-light">
+                            <input type="hidden" name="categoria_id" value="<?=$dataCategorias['categoria_id']?>">
+                            Aplicar
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                    <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+                </div>
+
+                      <!-------------------------------------------------- FIM MODAL DE EDITAR CATEGORIA -------------------------------------------------->
+
+                  <?php
+                    }
+                  ?>
               </tbody>
               <tfoot>
                 <tr>
-                  <th>Nome</th>
                   <th>Categoria</th>
-                  <th>Valor</th>
                   <th>Ações</th>
                 </tr>
               </tfoot>
@@ -79,5 +116,37 @@ require_once('includes/header.php');
   </div>
   <!-- /.content-wrapper -->
 <?php
+  include('deletarCategoria.php');
+  include('editarCategoria.php');
+  include('cadastrarCategoria.php');
   include('includes/footer.php');
 ?>
+
+<!-------------------------------------------------- MODAL DE NOVA CATEGORIA -------------------------------------------------->
+
+<div class="modal fade" id="modalNovaCategoria" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content bg-info">
+      <div class="modal-header">
+        <h4 class="modal-title">Nova categoria</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <form  id ="cadastrarCategoria" method="POST" action="">
+        <div class="modal-body">
+          <label for="categoria_nome">Nome:</label>
+          <div class="col-md-12">
+            <input style="width:100%" type="text" name="categoria_nome" id="categoria_nome" maxlength="20">
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cancelar</button>
+          <button type="submit" name="cadastrarCategoria" class="btn btn-outline-light">Cadastrar</button>
+        </div>
+      </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>

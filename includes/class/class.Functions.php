@@ -1,12 +1,6 @@
 <?php
 // Conexão direta com o banco
 //Lembrar de ajustar configuração com o banco de dados central
-//$link = mysql_connect('localhost', 'semedweb', 'key!databaseadmin')  or die('MySQL: Nao foi possivel conectar-se ao banco de dados');
-//mysql_select_db('sigem', $link) or die('MySQL: Nao foi possivel conectar-se ao banco de dados');
-
-//$mySQL->sql('SET character_set_results=utf8');
-
-//Teste gitignore 321
 
 function nomeCategoria($categoria_id){
 
