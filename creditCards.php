@@ -1,7 +1,7 @@
 <?php
-require_once('../includes/config.php');
+require_once('includes/config.php');
 //inclui o header
-require_once('../includes/header.php');
+require_once('includes/header.php');
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -10,7 +10,7 @@ require_once('../includes/header.php');
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Fluxo Financeiro</h1>
+            <h1 class="m-0">Meus Cartões</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -41,5 +41,5 @@ require_once('../includes/header.php');
   </div>
   <!-- /.content-wrapper -->
 <?php
-  include('../includes/footer.php');
+  include('includes/footer.php');
 ?>

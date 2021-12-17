@@ -20,7 +20,7 @@
             </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./pages/creditCards.php" class="nav-link active">
+                <a href="./creditCards.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Meus Cartões</p>
                 </a>
@@ -28,7 +28,7 @@
             </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./pages/billsAndGains.php" class="nav-link active">
+                <a href="./billsAndGains.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ganhos e Dívidas</p>
                 </a>

@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 #TIP: DO NOT CHANGE ANYTHING HERE OR YOU WILL BURN IN HELL :D
 
 //defines local translation date

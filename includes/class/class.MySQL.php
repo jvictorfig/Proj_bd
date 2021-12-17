@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 class MySQL {
         var $host;
         var $user;
@@ -13,25 +15,25 @@ class MySQL {
         }
 
         function connect(){
-                        $this->host = "localhost";
-                        $this->user = "jvbanco";
-                        $this->pass = "key!jvbanco";
-                        $this->db   = "init";
-                
-                $this->link = mysqlI_connect($this->host,$this->user,$this->pass,$this->db);
-		//mysqli_set_charset($this->link,'utf8');
-                
-                if(!$this->link){
-                        echo "<div class='alertMessage error SE'>ERRO NA CONEXÃO.<br>"
-                                ."<b>MySQL retornou: </b> ".mysqli_error($this->link)."<br></div>";
-                        die();
-                }
+                try {      
+                        $servername = "127.0.0.1"; 
+                        $username = "root"; 
+                        $password = "key!databaseadmin";
+                        $banco = "projeto";
+                        $conn = new mysql($servername, $username, $password, $banco);
+                        if ($conn->connect_error) {   
+                                die("Connection failed: " . $conn->connect_error); } 
+                                echo "Connected successfully";
+                } 
+                catch(Exception $e) {     
+                        echo $e->getMessage(); }
+                       
         }
 
         function sql($query){
                 $this->connect();
                 $this->query = $query;
-                if($this->result=mysqli_query($this->link, $this->query)){
+                if($this->result=mysql_query($this->link, $this->query)){
                         return $this->result;
                 } else {
                         die("<div class='alertMessage error SE'><h2>OCORREU UM ERRO AO EXECUTAR A QUERY SQL ABAIXO:</h2><br>".$query."<<br><br><b>MySQL Retornou: ".mysqli_error($this->link)."<b></div>");
@@ -39,7 +41,7 @@ class MySQL {
         }
 
         function disconnect(){
-                return mysqli_close($this->link);
+                return mysql_close($this->link);
         }
 }
 ?>
