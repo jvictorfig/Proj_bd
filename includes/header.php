@@ -2,7 +2,7 @@
   require_once('includes/class/class.Functions.php');
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: auto;" data-select2-id="32">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,9 +28,12 @@
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="../../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
+<body class="hold-transition sidebar-mini layout-fixed" style="height: auto;" data-select2-id="31">
+<div class="wrapper" data-select2-id="30">
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">

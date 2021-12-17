@@ -60,7 +60,6 @@ COMMIT;
 CREATE TABLE produto ( 
   `produto_id` INT(5) NOT NULL AUTO_INCREMENT ,
   `produto_nome` VARCHAR(20) NOT NULL , 
-  `produto_categoria_id` INT(5) NOT NULL , 
   `produto_valor` DOUBLE(10,2) NOT NULL , 
   PRIMARY KEY (`produto_id`)
   ) ENGINE = InnoDB;
@@ -70,3 +69,9 @@ CREATE TABLE produto (
     `categoria_nome` VARCHAR(20) NOT NULL , 
     PRIMARY KEY (`categoria_id`)
     ) ENGINE = InnoDB;
+
+CREATE TABLE `projeto`.`produto_categoria` ( 
+  `produto_categoria_id` INT(5) NOT NULL AUTO_INCREMENT , 
+  `produto_id` INT(5) NOT NULL , 
+  `categoria_id` INT(5) NOT NULL , 
+  PRIMARY KEY (`produto_categoria_id`)) ENGINE = InnoDB;

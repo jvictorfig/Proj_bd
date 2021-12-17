@@ -6,7 +6,7 @@
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard
+                Páginas
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -23,14 +23,6 @@
                 <a href="./categorias.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Categorias</p>
-                </a>
-              </li>
-            </ul>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./billsAndGains.php" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ganhos e Dívidas</p>
                 </a>
               </li>
             </ul>

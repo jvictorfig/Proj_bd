@@ -51,10 +51,10 @@ require_once('includes/header.php');
                 <tr>
                   <td><?=$dataCategorias['categoria_nome']?></td>
                   <td align="center" style="width:15%">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditarCategoria<?=$dataCategorias['categoria_id']?>">
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalEditarCategoria<?=$dataCategorias['categoria_id']?>">
                       <i class="fa fa-edit"></i>
                     </button>
-                    <a href="categorias.php?action=deletarCategoria&deletarCategoria=<?=$dataCategorias['categoria_id']?>" onclick="return confirm('Tem certeza que deseja deletar a categoria <?=$dataCategorias['categoria_nome']?>?\nOs produtos associados a essa categoria também serão excluídos.') ">
+                    <a href="categorias.php?action=deletarCategoria&deletarCategoria=<?=$dataCategorias['categoria_id']?>" onclick="return confirm('Tem certeza que deseja deletar a categoria <?=$dataCategorias['categoria_nome']?>?\nOs produtos que têm apenas essa categoria associada também serão excluídos.') ">
                       <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir">
                         <i class="fa fa-trash"></i>
                       </button>
@@ -66,18 +66,18 @@ require_once('includes/header.php');
 
                 <div class="modal fade" id="modalEditarCategoria<?=$dataCategorias['categoria_id']?>" style="display: none;" aria-hidden="true">
                   <div class="modal-dialog">
-                    <div class="modal-content bg-primary">
+                    <div class="modal-content bg-info">
                       <div class="modal-header">
-                        <h4 class="modal-title">Editar categoria | Id: <?=$dataCategorias['categoria_id']?></h4>
+                        <h4 class="modal-title">Editar categoria | <?=$dataCategorias['categoria_nome']?></h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">×</span>
                         </button>
                       </div>
                       <form  id ="editarCategoria" method="POST" action="">
                         <div class="modal-body">
-                          <label for="categoria_nome">Nome:</label>
                           <div class="col-md-12">
-                            <input style="width:100%" type="text" name="categoria_nome" value="<?=$dataCategorias['categoria_nome']?>" id="categoria_nome" maxlength="20">
+                            <label for="categoria_nome">Nome:</label>
+                            <input class="form-control" style="width:100%" type="text" name="categoria_nome" value="<?=$dataCategorias['categoria_nome']?>" id="categoria_nome" maxlength="20">
                           </div>
                         </div>
                         <div class="modal-footer justify-content-between">
@@ -135,9 +135,9 @@ require_once('includes/header.php');
       </div>
       <form  id ="cadastrarCategoria" method="POST" action="">
         <div class="modal-body">
-          <label for="categoria_nome">Nome:</label>
           <div class="col-md-12">
-            <input style="width:100%" type="text" name="categoria_nome" id="categoria_nome" maxlength="20">
+            <label for="categoria_nome">Nome:</label>
+            <input class="form-control" style="width:100%" type="text" name="categoria_nome" id="categoria_nome" maxlength="20">
           </div>
         </div>
         <div class="modal-footer justify-content-between">
