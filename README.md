@@ -124,10 +124,10 @@ AdminLTE.io reserves the right to change the license of future releases.
 - [Unsplash](https://unsplash.com/)
 - [Uifaces](http://uifaces.com/)
 
-## Notas João Victor - Entrega da primeira etapa
+## Notas João Victor - Entrega da segunda e terceira etapas
 
 - Tecnologias usadas:
-    - PHP 8.0 e html no desenvolvimento do sistema;
+    - PHP 8.0, SQL, Javascript e html no desenvolvimento do sistema;
     - PHPMyAdmin para visualização e manipulação de dados;
     - Template AdminLTE 3;
     - Docker Desktop para facilitar o ambiente de desenvolvimento.
@@ -135,3 +135,5 @@ AdminLTE.io reserves the right to change the license of future releases.
 - Motivo: Já possuía um poudo de conhecimento das tecnologias acima.
 
 - Link de acesso: jvictor.fazevedo.tec.br
+
+- Link do repositório: https://github.com/jvictorfig/Proj_bd
