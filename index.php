@@ -126,7 +126,7 @@ require_once('includes/header.php');
                           <div class="col-md-12">
                             <div class="form-group">
                               <label>Categoria:</label>
-                              <select name="categoria_id" class="form-control">
+                              <select name="categoria_id" class="form-control" required="">
                                 <option selected="" value="" disabled="">Escolha uma categoria</option>
                                 <?php
                                   $sqlCategoria = $mySQL->sql(" SELECT * 
@@ -180,7 +180,7 @@ require_once('includes/header.php');
                           <div class="col-md-12">
                             <div class="form-group">
                               <label>Categoria:</label>
-                              <select name="categoria_id" class="form-control">
+                              <select name="categoria_id" class="form-control" required="">
                                 <option selected="" value="" disabled="">Escolha uma categoria</option>
                                 <?php
                                   $sqlDeletarCategoria = $mySQL->sql(" SELECT c.* 
@@ -200,7 +200,7 @@ require_once('includes/header.php');
                         </div>
                         <div class="modal-footer justify-content-between">
                           <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cancelar</button>
-                          <button type="submit" name="deletarProdutoCategoria" class="btn btn-outline-light">
+                          <button type="submit" name="deletarProdutoCategoria" class="btn btn-outline-light" onclick="return confirm('Tem certeza que deseja desvincular esta categoria do produto?')">
                             <input type="hidden" name="produto_id" value="<?=$dataProdutos['produto_id']?>">
                             <input type="hidden" name="produto_nome" value="<?=$dataProdutos['produto_nome']?>">
                             Deletar
@@ -261,7 +261,7 @@ require_once('includes/header.php');
           <div class="col-md-12">
             <div class="form group">
               <label for="produto_nome">Nome:</label>
-              <input class="form-control" style="width:100%" type="text" name="produto_nome" id="produto_nome" maxlength="20">
+              <input class="form-control" style="width:100%" type="text" name="produto_nome" id="produto_nome" maxlength="20" required="">
             </div>
             <div class="form-group">
               <label for="produto_nome">Valor:</label>
