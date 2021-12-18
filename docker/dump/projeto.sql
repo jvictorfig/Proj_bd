@@ -23,36 +23,6 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
---
--- Estrutura da tabela `Teste`
---
-
-CREATE TABLE `Teste` (
-  `TesteId` int(10) NOT NULL,
-  `TesteName` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
---
--- Índices para tabelas despejadas
---
-
---
--- Índices para tabela `Teste`
---
-ALTER TABLE `Teste`
-  ADD PRIMARY KEY (`TesteId`);
-
---
--- AUTO_INCREMENT de tabelas despejadas
---
-
---
--- AUTO_INCREMENT de tabela `Teste`
---
-ALTER TABLE `Teste`
-  MODIFY `TesteId` int(10) NOT NULL AUTO_INCREMENT;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
