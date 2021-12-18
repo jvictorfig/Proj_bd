@@ -56,8 +56,8 @@ require_once('includes/header.php');
                     <?php
                       nomeCategoria($dataProdutos['produto_id'])
                     ?>
-                    <button class="btn btn-danger" style="float:right" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-minus"></i></button>
-                    <button class="btn btn-success" style="float:right" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-plus"></i></button>
+                    <button class="btn btn-danger" style="float:right" data-toggle="modal" data-target="#modalDeletarProdutoCategoria<?=$dataProdutos['produto_id']?>"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-success" style="float:right" data-toggle="modal" data-target="#modalNovoProdutoCategoria<?=$dataProdutos['produto_id']?>"><i class="fa fa-plus"></i></button>
                   </td>
                   <td>R$<?=$dataProdutos['produto_valor']?></td>
                   <td align="center" style="width:15%">
@@ -110,6 +110,111 @@ require_once('includes/header.php');
 
                       <!-------------------------------------------------- FIM MODAL DE EDITAR PRODUTO -------------------------------------------------->
 
+                      <!-------------------------------------------------- MODAL DE NOVO PRODUTO-CATEGORIA -------------------------------------------------->
+
+                <div class="modal fade" id="modalNovoProdutoCategoria<?=$dataProdutos['produto_id']?>" style="display: none;" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content bg-success">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Novo produto-categoria</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                      </div>
+                      <form  id ="cadastrarProdutoCategoria" method="POST" action="">
+                        <div class="modal-body">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>Categoria:</label>
+                              <select name="categoria_id" class="form-control">
+                                <option selected="" value="" disabled="">Escolha uma categoria</option>
+                                <?php
+                                  $sqlCategoria = $mySQL->sql(" SELECT * 
+                                                                FROM categoria
+                                                                WHERE categoria_id NOT IN 
+                                                                  (SELECT c.categoria_id 
+                                                                  FROM categoria c 
+                                                                  INNER JOIN produto_categoria pc ON (c.categoria_id = pc.categoria_id) 
+                                                                  WHERE pc.produto_id = '".$dataProdutos['produto_id']."')
+                                                                ORDER BY categoria_nome ASC");
+                                  while($dataCategoria = mysqli_fetch_array($sqlCategoria)){
+                                ?>
+                                  <option value="<?=$dataCategoria['categoria_id']?>"><?=$dataCategoria['categoria_nome']?></option>
+                                <?php
+                                  }
+                                ?>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                          <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cancelar</button>
+                          <button type="submit" name="cadastrarProdutoCategoria" class="btn btn-outline-light">
+                            <input type="hidden" name="produto_id" value="<?=$dataProdutos['produto_id']?>">
+                            <input type="hidden" name="produto_nome" value="<?=$dataProdutos['produto_nome']?>">
+                            Cadastrar
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                    <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+                </div>
+
+                <!-------------------------------------------------- FIM MODAL DE NOVO PRODUTO-CATEGORIA -------------------------------------------------->
+
+                      <!-------------------------------------------------- MODAL DE DELETAR PRODUTO-CATEGORIA -------------------------------------------------->
+
+                <div class="modal fade" id="modalDeletarProdutoCategoria<?=$dataProdutos['produto_id']?>" style="display: none;" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content bg-danger">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Deletar produto-categoria</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                      </div>
+                      <form  id ="deletarProdutoCategoria" method="POST" action="">
+                        <div class="modal-body">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>Categoria:</label>
+                              <select name="categoria_id" class="form-control">
+                                <option selected="" value="" disabled="">Escolha uma categoria</option>
+                                <?php
+                                  $sqlDeletarCategoria = $mySQL->sql(" SELECT c.* 
+                                                                FROM categoria c
+                                                                INNER JOIN produto_categoria pc ON (c.categoria_id = pc.categoria_id)
+                                                                WHERE pc.produto_id = '".$dataProdutos['produto_id']."';
+                                                                ");
+                                  while($dataDeletarCategoria = mysqli_fetch_array($sqlDeletarCategoria)){
+                                ?>
+                                  <option value="<?=$dataDeletarCategoria['categoria_id']?>"><?=$dataDeletarCategoria['categoria_nome']?></option>
+                                <?php
+                                  }
+                                ?>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                          <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cancelar</button>
+                          <button type="submit" name="deletarProdutoCategoria" class="btn btn-outline-light">
+                            <input type="hidden" name="produto_id" value="<?=$dataProdutos['produto_id']?>">
+                            <input type="hidden" name="produto_nome" value="<?=$dataProdutos['produto_nome']?>">
+                            Deletar
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                    <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+                </div>
+
+                <!-------------------------------------------------- FIM MODAL DE DELETAR PRODUTO-CATEGORIA -------------------------------------------------->
+
                   <?php
                     }
                   ?>
@@ -132,6 +237,8 @@ require_once('includes/header.php');
   </div>
   <!-- /.content-wrapper -->
   <?php
+    include('deletarProdutoCategoria.php');
+    include('cadastrarProdutoCategoria.php');
     include('deletarProduto.php');
     include('editarProduto.php');
     include('cadastrarProduto.php');
@@ -188,46 +295,3 @@ require_once('includes/header.php');
 </div>
 
 <!-------------------------------------------------- FIM MODAL DE NOVO PRODUTO -------------------------------------------------->
-
-<!-------------------------------------------------- MODAL DE NOVO PRODUTO-CATEGORIA -------------------------------------------------->
-
-<div class="modal fade" id="modalNovoProdutoCategoria" style="display: none;" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content bg-info">
-      <div class="modal-header">
-        <h4 class="modal-title">Novo produto-categoria</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <form  id ="cadastrarProdutoCategoria" method="POST" action="">
-        <div class="modal-body">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label>Categoria:</label>
-              <select name="categoria_id" class="form-control">
-                <option selected="" value="" disabled="">Escolha uma categoria</option>
-                <?php
-                  $sqlCategoria = $mySQL->sql("SELECT * FROM categoria ORDER BY categoria_nome ASC");
-                  while($dataCategoria = mysqli_fetch_array($sqlCategoria)){
-                ?>
-                  <option value="<?=$dataCategoria['categoria_id']?>"><?=$dataCategoria['categoria_nome']?></option>
-                <?php
-                  }
-                ?>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cancelar</button>
-          <button type="submit" name="cadastrarProduto" class="btn btn-outline-light">Cadastrar</button>
-        </div>
-      </form>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
-
-<!-------------------------------------------------- FIM MODAL DE NOVO PRODUTO-CATEGORIA -------------------------------------------------->
